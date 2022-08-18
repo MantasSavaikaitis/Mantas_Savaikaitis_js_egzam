@@ -8,6 +8,9 @@ atveju grąžins visų "users" amžiaus visurkį kaip skaičių.
 atveju grąžins visų "users" vardus naujame masyve pvz., ['John Smith', 'Ann Smith'..].
 -------------------------------------------------------------------------- */
 
+'use strict';
+console.log('script.js');
+
 const users = [
   { id: '1', name: 'John Smith', age: 20 },
   { id: '2', name: 'Ann Smith', age: 24 },
@@ -19,3 +22,14 @@ const users = [
   { id: '8', name: 'Simon Peterson', age: 30 },
   { id: '9', name: 'Daniel Cane', age: 51 },
 ];
+
+function getUserAverageAge(usersArr) {
+  return +usersArr.reduce((ageSum, userObj) => ageSum + userObj.age, 0) / usersArr.length;
+}
+function getUsersNames(userArr) {
+  return userArr.map((userObj) => userObj.name)
+}
+
+
+console.log('getUserAverageAge ===', getUserAverageAge(users));
+console.log('getUsersNames(userArr) ===', getUsersNames(users));
