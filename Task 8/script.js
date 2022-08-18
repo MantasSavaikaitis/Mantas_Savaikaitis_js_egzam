@@ -9,18 +9,17 @@ division(a, b) - priima du skaičius ir grąžina jų dalybos rezultatą;
 console.log('script.js');
 
 class Calculator {
-    constructor(a, b) {
-        this.sum = a + b;
-        this.subtraction = a - b;
-        this.multiplication = a * b;
-        this.division = a / b;
-    }
+    sum(a, b) { return (+a) + (+b); };
+    subtraction(a, b) { return (+a) - (+b); };
+    multiplication(a, b) { return (+a) * (+b); };
+    division(a, b) { return (+a) / (+b); };
+
 }
 
-const calc1 = new Calculator(6, 2);
+const calc1 = new Calculator;
 
 console.log('pvz calc1 === new Calculator(6, 2) ', calc1);
-console.log('calc1.division; ===', calc1.division);
-console.log('calc1.multiplication ===', calc1.multiplication);
-console.log('calc1.subtraction ===', calc1.subtraction);
-console.log('calc1.sum ===', calc1.sum);
+console.log('calc1.division(6,2); ===', calc1.division(6, 2));
+console.log('calc1.multiplication(6,2) ===', calc1.multiplication(6, 2));
+console.log('calc1.subtraction(6,2) ===', calc1.subtraction(6, 2));
+console.log('calc1.sum(6,2) ===', calc1.sum(6, 2));
