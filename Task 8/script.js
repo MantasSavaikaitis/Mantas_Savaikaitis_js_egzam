@@ -9,11 +9,11 @@ division(a, b) - priima du skaičius ir grąžina jų dalybos rezultatą;
 console.log('script.js');
 
 class Calculator {
+    //If you do not define a constructor method, JavaScript will add an empty constructor method. 
     sum(a, b) { return (+a) + (+b); };
     subtraction(a, b) { return (+a) - (+b); };
     multiplication(a, b) { return (+a) * (+b); };
     division(a, b) { return (+a) / (+b); };
-
 }
 
 const calc1 = new Calculator;
