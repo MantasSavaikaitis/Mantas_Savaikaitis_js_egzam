@@ -41,6 +41,7 @@ function insertDataToHtml(objArr) {
     objArr.forEach(brandObj => {
         // console.log('brandObj ===', brandObj);
         divEl.append(brandCardHtml(brandObj));
+
     });
 
 

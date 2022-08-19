@@ -3,8 +3,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 /* Mobile first */
@@ -21,9 +21,41 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
+  /* ================= mano pridetos taisykles */
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .container h1 {
   margin-top: 50px;
-  color: #333;
+  color: tomato;
+}
+
+.card {
+  padding: 2rem;
+  border: 3px solid tomato;
+  border-radius: 24px;
+  margin: 1rem;
+}
+
+.card > h3 {
+  font-size: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+.card > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 12px;
+}
+
+.card > ul > li {
+  display: block;
+  border: 1px solid darkblue;
+  border-radius: 1rem;
+  padding: 6px;
+  text-align: center;
 }
