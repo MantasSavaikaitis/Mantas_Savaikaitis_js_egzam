@@ -27,4 +27,4 @@ class Movie {
 
 const movie1 = new Movie("spiderMan", "Jason", 500000000);
 
-console.log('movie1.wasExpensive() ===', movie1.wasExpensive());;
+console.log('movie1.wasExpensive() ===', movie1.wasExpensive());
