@@ -71,4 +71,11 @@
 .card {
   flex-grow: 1;
   border: 2px solid #222;
+  max-width: 250px;
+}
+
+.card > img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }

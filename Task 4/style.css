@@ -55,7 +55,7 @@
 .card > ul > li {
   display: block;
   border: 1px solid darkblue;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   padding: 6px;
   text-align: center;
 }
