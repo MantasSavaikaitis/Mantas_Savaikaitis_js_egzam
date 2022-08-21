@@ -12,20 +12,25 @@ turėti bent minimalų stilių ir būti responsive;
 console.log('script.js');
 const ENDPOINT = 'cars.json';
 
-
+/**
+ * Main thread
+ */
 async function init() {
     const dataObjArr = await extractData(ENDPOINT);
-    // console.log('dataArr ===', dataArr);
     insertDataToHtml(dataObjArr);
 }
+init();
 
 
+/**
+ * takes a link (string) and returns array of data or catches errors otherwise.
+ * @param {String} jsonLink 
+ * @returns {Array}
+ */
 async function extractData(jsonLink) {
     try {
         const resp = await fetch(jsonLink);
-        // console.log('resp ===', resp);
         const parsedData = await resp.json();
-        // console.log('parsedData ===', parsedData);
         return parsedData;
     }
     catch (err) {
@@ -33,20 +38,24 @@ async function extractData(jsonLink) {
     }
 }
 
+
+/**
+ * takes Array of data objects performs its alfabetic sorting and injection to Html
+ * @param {Array} objArr 
+ */
 function insertDataToHtml(objArr) {
     const divEl = document.getElementById('output');
-    // alfabetic sorting
+    // Brands alfabetic sorting
     objArr.sort((a, b) => (a.brand < b.brand) ? -1 : 1);
-
-    objArr.forEach(brandObj => {
-        // console.log('brandObj ===', brandObj);
-        divEl.append(brandCardHtml(brandObj));
-
-    });
-
-
+    objArr.forEach(brandObj => { divEl.append(brandCardHtml(brandObj)); });
 }
 
+
+/**
+ * takes Brand object and return single card Html Element
+ * @param {Object} brandObj 
+ * @returns {Element}
+ */
 function brandCardHtml(brandObj) {
     const cardDivEl = document.createElement('div');
     cardDivEl.className = 'card';
@@ -56,7 +65,6 @@ function brandCardHtml(brandObj) {
     brandObj.models.forEach(model => {
         const modelEl = document.createElement('li');
         modelEl.textContent = model;
-        // console.log('modelEl ===', modelEl);
         listEl.append(modelEl);
     });
     cardDivEl.append(brandNameEL, listEl);
@@ -66,4 +74,3 @@ function brandCardHtml(brandObj) {
 
 
 
-init();
