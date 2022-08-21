@@ -10,5 +10,80 @@ Paspaudus mygtuką "Show users":
 Pastaba: Sukurta kortelė, kurioje yra pateikiama vartotojo informacija, turi 
 turėti bent minimalų stilių ir būti responsive;
 -------------------------------------------------------------------------- */
-
+'use strict';
+console.log('script.js');
 const ENDPOINT = 'https://api.github.com/users';
+
+/**
+ * main thread
+ */
+async function init() {
+    buttonFunctionalityActivation();
+}
+init();
+
+/**
+ * gives button "Show users" functionality. Adds event Listiner.
+ */
+function buttonFunctionalityActivation() {
+    const btnEl = document.getElementById('btn');
+    btnEl.addEventListener('click', async () => {
+        document.getElementById('message').remove();
+        const dataObjArr = await extractData(ENDPOINT);
+        insertDataToHtml(dataObjArr);
+    });
+}
+
+
+/**
+ * performs data fetching and error catching
+ * @param {String} jsonLink 
+ * @returns {Array}
+ */
+async function extractData(jsonLink) {
+    try {
+        const resp = await fetch(jsonLink);
+        if (resp.ok) {
+            const parsedData = await resp.json();
+            return parsedData;
+        }
+
+    }
+    catch (err) {
+        console.log('err ===', err);
+    };
+}
+
+
+/**
+ * Performs actions needed to output data into html exposition
+ * @param {Array} userObjArr 
+ */
+function insertDataToHtml(userObjArr) {
+    const divEl = document.getElementById('output');
+    divEl.classList.add('output');
+    // alfabetic sorting
+    userObjArr.sort((a, b) => (a.login.toLowerCase() > b.login.toLowerCase()) ? 1 : -1);
+    userObjArr.forEach(userObj => {
+        divEl.append(brandCardHtml(userObj));
+    });
+
+
+}
+
+/**
+ * Creates single user Card Html Element
+ * @param {Object} userObj 
+ * @returns {Element}
+ */
+function brandCardHtml(userObj) {
+    const cardDivEl = document.createElement('div');
+    cardDivEl.className = 'card';
+    const loginNameEL = document.createElement('h3');
+    const avatarEl = document.createElement('img');
+    loginNameEL.textContent = userObj.login;
+    avatarEl.src = userObj.avatar_url
+    cardDivEl.append(avatarEl, loginNameEL);
+    return cardDivEl;
+}
+

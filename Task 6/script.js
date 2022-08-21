@@ -24,10 +24,12 @@ const users = [
 ];
 
 function getUserAverageAge(usersArr) {
+  // Paimamas "users" array naudojant reduce metoda susumuojami visu users amzius ir padalinamas is array.length
   return +usersArr.reduce((ageSum, userObj) => ageSum + userObj.age, 0) / usersArr.length;
 }
 function getUsersNames(userArr) {
-  return userArr.map((userObj) => userObj.name)
+  // kadangi reikalingi visi "users" vardai naudojama map ciklas kuris grazina visus userArr.name
+  return userArr.map((userObj) => userObj.name);
 }
 
 

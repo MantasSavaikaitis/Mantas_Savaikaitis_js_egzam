@@ -7,6 +7,8 @@ atveju grąžins "users", kurie turi augintinį.
 2. funkcija "filterAdults" - kaip argumentą priims masyvą ir duoto masyvo 
 atveju grąžins masyvą su "users", kurie yra pilnamečiai.
 -------------------------------------------------------------------------- */
+'use strict';
+console.log('script.js');
 
 const users = [
   { id: '1', name: 'John Smith', age: 20, hasDog: true },
@@ -19,3 +21,16 @@ const users = [
   { id: '8', name: 'Simon Peterson', age: 30, hasDog: false },
   { id: '9', name: 'Daniel Cane', age: 51, hasDog: true },
 ];
+
+function filterDogOwers(usersArr) {
+  //naudojant filter tikriname ar userObj.hasDog yra true ir graziname array su tais kurie true
+  return usersArr.filter((userObj) => userObj.hasDog);
+}
+function filterAdults(usersArr) {
+  //naudojant filter tikriname ar userObj.age daugiau/lygu 18 ir graziname array su tais kurie atitinka salyga
+  return usersArr.filter((userObj) => userObj.age >= 18);
+}
+
+
+console.log('filterDogOwers ===', filterDogOwers(users));
+console.log('filterAdults ===', filterAdults(users));
