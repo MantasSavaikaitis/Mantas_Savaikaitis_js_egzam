@@ -11,3 +11,58 @@ Pastaba: atvaizdavimas turi būti matomas pateikus formą ir pateikiamas
 
 'use strict';
 console.log('script.js');
+
+function init() {
+    buttonFunctionActivation();
+}
+
+init();
+
+function buttonFunctionActivation() {
+    const btnEl = document.forms[0];
+    btnEl.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputEl = document.getElementById('search');
+        const unitsEl = document.getElementById('units');
+        if (Number.isNaN(+inputEl.value)) {
+            outputToHtml(`"${inputEl.value}" is not a number.`);
+        }
+        else if (unitsEl.value === "pounds") {
+            console.log('pounds happening');
+            convertToPounds(inputEl.value);
+        }
+        else if (unitsEl.value === "grams") {
+            console.log('grams happening');
+            convertToGrams(inputEl.value);
+        }
+        else if (unitsEl.value === "oz") {
+            console.log('oz happening');
+            convertToOz(inputEl.value);
+        }
+        btnEl.reset();
+    })
+}
+
+function convertToGrams(inputValue) {
+    const convertedValue = `${inputValue} kg = ${(+inputValue * 1000)} Grams`;
+    outputToHtml(convertedValue);
+}
+
+function convertToOz(inputValue) {
+    const convertedValue = `${inputValue} kg = ${(+inputValue * 35.274)} Oz`;
+    outputToHtml(convertedValue);
+}
+
+function convertToPounds(inputValue) {
+    const convertedValue = `${inputValue} kg = ${(+inputValue * 2.2046)} Pounds`;
+    outputToHtml(convertedValue);
+}
+
+function outputToHtml(outputValue) {
+    const outputEl = document.getElementById('output');
+    outputEl.innerHTML = '';
+    outputEl.classList.add('output');
+    const pEl = document.createElement('p');
+    pEl.textContent = outputValue;
+    outputEl.append(pEl);
+}   
