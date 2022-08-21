@@ -46,6 +46,8 @@ async function extractData(jsonLink) {
         if (resp.ok) {
             const parsedData = await resp.json();
             return parsedData;
+        } else {
+            errorPrintOut(resp);
         }
 
     }
@@ -87,3 +89,11 @@ function brandCardHtml(userObj) {
     return cardDivEl;
 }
 
+
+function errorPrintOut(response) {
+    const divEl = document.getElementById('output')
+    const pEl = document.createElement('p');
+    console.log(response);
+    pEl.textContent = `Link: ${ENDPOINT} Error: ${response.status} ${response.statusText}`;
+    divEl.append(pEl);
+}
