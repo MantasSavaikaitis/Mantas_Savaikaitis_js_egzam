@@ -14,12 +14,17 @@ turėti bent minimalų stilių ir būti responsive;
 console.log('script.js');
 const ENDPOINT = 'https://api.github.com/users';
 
+/**
+ * main thread
+ */
 async function init() {
     buttonFunctionalityActivation();
 }
 init();
 
-
+/**
+ * gives button "Show users" functionality. Adds event Listiner.
+ */
 function buttonFunctionalityActivation() {
     const btnEl = document.getElementById('btn');
     btnEl.addEventListener('click', async () => {
@@ -29,13 +34,17 @@ function buttonFunctionalityActivation() {
     });
 }
 
+
+/**
+ * performs data fetching and error catching
+ * @param {String} jsonLink 
+ * @returns {Array}
+ */
 async function extractData(jsonLink) {
     try {
         const resp = await fetch(jsonLink);
-        // console.log('resp ===', resp);
         if (resp.ok) {
             const parsedData = await resp.json();
-            // console.log('parsedData ===', parsedData);
             return parsedData;
         }
 
@@ -45,28 +54,35 @@ async function extractData(jsonLink) {
     };
 }
 
+
+/**
+ * Performs actions needed to output data into html exposition
+ * @param {Array} userObjArr 
+ */
 function insertDataToHtml(userObjArr) {
     const divEl = document.getElementById('output');
     divEl.classList.add('output');
     // alfabetic sorting
-    userObjArr.sort((a, b) => (a.login.toLowerCase < b.login.toLowerCase) ? -1 : 1);
-    console.log('objArr ===', userObjArr);
+    userObjArr.sort((a, b) => (a.login.toLowerCase() > b.login.toLowerCase()) ? 1 : -1);
     userObjArr.forEach(userObj => {
-        // console.log('brandObj ===', brandObj);
         divEl.append(brandCardHtml(userObj));
-
     });
 
 
 }
 
-function brandCardHtml(userObjArr) {
+/**
+ * Creates single user Card Html Element
+ * @param {Object} userObj 
+ * @returns {Element}
+ */
+function brandCardHtml(userObj) {
     const cardDivEl = document.createElement('div');
     cardDivEl.className = 'card';
     const loginNameEL = document.createElement('h3');
     const avatarEl = document.createElement('img');
-    loginNameEL.textContent = userObjArr.login;
-    avatarEl.src = userObjArr.avatar_url
+    loginNameEL.textContent = userObj.login;
+    avatarEl.src = userObj.avatar_url
     cardDivEl.append(avatarEl, loginNameEL);
     return cardDivEl;
 }

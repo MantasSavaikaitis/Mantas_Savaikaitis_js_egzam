@@ -62,6 +62,7 @@ form {
   display: inline;
 }
 
+/* added class */
 .output {
   max-width: 80%;
   margin: 0 auto;
